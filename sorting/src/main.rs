@@ -1,15 +1,46 @@
 use std::io;
 
 fn main() {
-    println!("Welcome to Data Structures and Alogrithms\n\nMenu:\n1. Run an insertion sort - ascending\n2. Run an insertion sort - descending\n\nctrl+c to exit...\n\nEnter a menu option");
+    println!("Welcome to Data Structures and Alogrithms\n\nMenu:\n1. Run an insertion sort - ascending\n2. Run an insertion sort - descending\n3. Selection Sort\n\nctrl+c to exit...\n\nEnter a menu option");
 	loop {
 		let user_input = get_user_input();
 		if user_input == 1 {
 			do_insertion_sort();
+		}else if user_input == 3 {
+			do_selection_sort();
 		}else {
 			println!("Wrong input");
 		}
 	}		
+}
+
+fn do_selection_sort() {
+	println!("Selection sort - ascending :: start-----------\n\n");
+	let mut input_array = [34,12,3,9,13,5,2,1];
+	
+	for j in 0..input_array.len() {
+		let mut key = input_array[j];
+		let mut key_position = j;
+		for sort_run in (j+1)..input_array.len() {
+			if key < input_array[sort_run] {
+				continue;
+			}else{
+				key = input_array[sort_run];
+				key_position = sort_run;
+			}		
+		}
+		let temp = input_array[j];
+		input_array[j] = key;
+		input_array[key_position] = temp;
+	}
+	
+	println!("\tOutput\n");
+	print!("\t");
+	for element in input_array.iter() {
+		print!("{},",element);
+	}	
+	println!("\n\nSelection sort - ascending :: finish-----------\n\n");
+	
 }
 
 fn do_insertion_sort() {
